@@ -2,6 +2,9 @@ import collections
 import collections.abc
 
 
+# TODO: implement update method, the argument is dict or tuple(key, value). 
+# https://stackoverflow.com/questions/24601722/how-can-i-use-functools-singledispatch-with-instance-methods
+
 class PriorityDict(collections.abc.MutableMapping):
         
     def __init__(self, default_priority_func):
