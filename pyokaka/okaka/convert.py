@@ -14,24 +14,23 @@ def _make_sokuon_tpls(items):
 
 def _load_transtable():
     with (_dir / '../transtable.json').open() as fin:
-        data = json.load(fin)
+        table = json.load(fin)
 
-    convert_tpls = [
-        (key, value) for value, keys in data.items() for key in keys
-    ]
-    convert_tpls += _make_sokuon_tpls(
-        filter(lambda kv: kv[-1] not in 'あいうえおん', convert_tpls)
+    update_transtable({
+        key: value for key, value in table.items()
+        if key not in 'あいうえおん'
+    })
+    _convert_dct.update(
+        (key, value) for value, keys in table.items() for key in keys
+        if value in 'あいうえおん'
     )
-    convert_tpls += [('\'', ''), ('-', 'ー')]
-
-    pd = PriorityDict(lambda k: 100-len(k))
-    pd.update(convert_tpls)
-    return pd
+    _convert_dct.update([
+        ('\'', ''), ('-', 'ー')   
+    ])
 
 
 #
 #
-_convert_dct = _load_transtable()
 def convert(roman_sentence):
     roman_sentence = roman_sentence.lower()
 
@@ -59,10 +58,19 @@ def update_convert_dct(dct, *, top_priority=False):
         **dct, **dict(_make_sokuon_tpls(items))
     }
 
-    print(items)
-
     if top_priority:
         _convert_dct.update(items, priority_func=lambda _: 0)
     else:
         _convert_dct.update(items)
 
+
+def update_transtable(table):
+    update_convert_dct({
+        key: value for value, keys in table.items() for key in keys            
+    })
+
+
+#
+#
+_convert_dct = PriorityDict(lambda k: 100-len(k))
+_load_transtable()

@@ -1,6 +1,7 @@
 from . import convert
 
 import argparse
+import json
 import sys
 
 
@@ -14,8 +15,18 @@ def main():
         nargs='?', default=sys.stdin,
         help='file as input'
     )
+    parser.add_argument(
+        '--load', type=argparse.FileType('r'),
+        help='json file to add into convert table'
+    )
     
     args = parser.parse_args()
+
+    if args.load:
+        print(f'load for {args.load.name}...')
+        convert.update_transtable(
+            json.load(args.load)
+        )
 
     if args.file is sys.stdin:
         repl()
@@ -24,14 +35,15 @@ def main():
             convert.convert(args.file.read())
         )
 
+
 def repl():
-    print('>>> ', end='', flush=True)
+    print('Roman >>> ', end='', flush=True)
     
     for sentence in map(str.rstrip, sys.stdin):
         print(
-            '... {}'.format(convert.convert(sentence))
+            'JKana ... {}'.format(convert.convert(sentence))
         )
-        print('>>> ', end='', flush=True)
+        print('Roman >>> ', end='', flush=True)
 
 
 main()
