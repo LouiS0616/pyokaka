@@ -2,9 +2,6 @@ import collections
 import collections.abc
 
 
-# TODO: implement update method, the argument is dict or tuple(key, value). 
-# https://stackoverflow.com/questions/24601722/how-can-i-use-functools-singledispatch-with-instance-methods
-
 class PriorityDict(collections.abc.MutableMapping):
         
     def __init__(self, default_priority_func):
@@ -37,8 +34,13 @@ class PriorityDict(collections.abc.MutableMapping):
         del self._inner_dict[self._ask_priority(key)][key]
         self._inner_keys.remove(key)
 
-    def __len__(self):
-        return len(self._inner_keys)
+    def update(self, new_items, priority_func=None):
+        if priority_func is None:
+            priority_func = self._default_priority_func
+
+        for key, value in dict(new_items).items():
+            priority = priority_func(key)
+            self.__setitem__(key, value, priority=priority)
 
     def _ask_priority(self, key):
         for priority, dct in self._inner_dict.items():
@@ -65,6 +67,9 @@ class PriorityDict(collections.abc.MutableMapping):
         return self.keys()
 
     # as container
+    def __len__(self):
+        return len(self._inner_keys)
+
     def __contains__(self, key):
         return key in self._inner_keys
 
