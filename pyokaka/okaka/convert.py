@@ -6,11 +6,13 @@ from pathlib import Path
 
 _dir = Path(__file__).parent
 
+
 def _make_sokuon_tpls(items):
     return [
         ('{}{}'.format(key[0], key), 'っ{}'.format(value))
         for key, value in items
     ]
+
 
 def _load_transtable():
     with (_dir / '../transtable.json').open() as fin:
@@ -25,7 +27,7 @@ def _load_transtable():
         if value in 'あいうえおん'
     )
     _convert_dct.update([
-        ('\'', ''), ('-', 'ー')   
+        ('\'', ''), ('-', 'ー')
     ])
 
 
@@ -38,7 +40,7 @@ def convert(roman_sentence):
         for key, value in _convert_dct.items():
             if roman_sentence.startswith(key):
                 return key, value
-        
+
         head_ch = roman_sentence[0]
         return head_ch, head_ch
 
@@ -50,7 +52,7 @@ def convert(roman_sentence):
         roman_sentence = roman_sentence[len(frm):]
 
     return ''.join(ret)
-        
+
 
 def update_convert_dct(dct, *, top_priority=False):
     items = tuple(dct.items())
@@ -66,7 +68,7 @@ def update_convert_dct(dct, *, top_priority=False):
 
 def update_transtable(table):
     update_convert_dct({
-        key: value for value, keys in table.items() for key in keys            
+        key: value for value, keys in table.items() for key in keys
     })
 
 

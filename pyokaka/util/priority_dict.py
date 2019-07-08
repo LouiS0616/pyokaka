@@ -3,7 +3,7 @@ import collections.abc
 
 
 class PriorityDict(collections.abc.MutableMapping):
-        
+
     def __init__(self, default_priority_func):
         self._default_priority_func = default_priority_func
 

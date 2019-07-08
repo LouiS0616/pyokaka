@@ -19,7 +19,7 @@ def main():
         '--load', type=argparse.FileType('r'),
         help='json file to add into convert table'
     )
-    
+
     args = parser.parse_args()
 
     if args.load:
@@ -38,7 +38,7 @@ def main():
 
 def repl():
     print('Roman >>> ', end='', flush=True)
-    
+
     for sentence in map(str.rstrip, sys.stdin):
         print(
             'JKana ... {}'.format(convert.convert(sentence))
