@@ -18,7 +18,8 @@ def main():
     )
     parser.add_argument(
         '--load', type=argparse.FileType('r', encoding='utf-8'),
-        help='json file to add into convert table'
+        metavar='JSONFILE',
+        help='json file (UTF-8) to add into convert table'
     )
 
     args = parser.parse_args()
