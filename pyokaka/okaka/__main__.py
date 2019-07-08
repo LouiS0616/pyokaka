@@ -1,4 +1,5 @@
 from . import convert
+from . import update_transtable
 
 import argparse
 import json
@@ -24,7 +25,7 @@ def main():
 
     if args.load:
         print(f'load for {args.load.name}...')
-        convert.update_transtable(
+        update_transtable(
             json.load(args.load)
         )
 
@@ -32,7 +33,7 @@ def main():
         repl()
     else:
         print(
-            convert.convert(args.file.read())
+            convert(args.file.read())
         )
 
 
@@ -41,7 +42,7 @@ def repl():
 
     for sentence in map(str.rstrip, sys.stdin):
         print(
-            'JKana ... {}'.format(convert.convert(sentence))
+            'JKana ... {}'.format(convert(sentence))
         )
         print('Roman >>> ', end='', flush=True)
 
