@@ -12,12 +12,12 @@ assert __name__ == '__main__'
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        'file', type=argparse.FileType('r'),
+        'file', type=argparse.FileType('r', encoding='utf-8'),
         nargs='?', default=sys.stdin,
         help='file as input'
     )
     parser.add_argument(
-        '--load', type=argparse.FileType('r'),
+        '--load', type=argparse.FileType('r', encoding='utf-8'),
         help='json file to add into convert table'
     )
 

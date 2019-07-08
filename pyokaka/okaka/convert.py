@@ -15,7 +15,7 @@ def _make_sokuon_tpls(items):
 
 
 def _load_transtable():
-    with (_dir / '../transtable.json').open() as fin:
+    with (_dir / '../transtable.json').open(encoding='utf-8') as fin:
         table = json.load(fin)
 
     update_transtable({
