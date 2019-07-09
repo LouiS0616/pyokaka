@@ -1,5 +1,5 @@
-from . import convert
-from . import update_transtable
+from .convert import convert
+from .convert import update_transtable
 
 import argparse
 import json
@@ -26,9 +26,17 @@ def main():
 
     if args.load:
         print(f'load for {args.load.name}...')
-        update_transtable(
-            json.load(args.load)
-        )
+
+        try:
+            transtable = json.load(args.load)
+        except UnicodeDecodeError:
+            print(
+                'json file must be written in utf-8 encoding.',
+                file=sys.stderr
+            )
+            sys.exit(1)
+
+        update_transtable(transtable)
 
     if args.file is sys.stdin:
         repl()
