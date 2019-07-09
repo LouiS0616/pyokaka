@@ -13,7 +13,7 @@ def setup_package():
     os.chdir(src_path)
     sys.path.insert(0, src_path)
 
-    with open('README.md') as f:
+    with open('README.md', encoding='utf-8') as f:
         readme = f.read()
 
     metadata = dict(
