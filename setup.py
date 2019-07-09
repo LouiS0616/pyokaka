@@ -34,8 +34,6 @@ def setup_package():
         }
     )
 
-    print(find_packages())
-
     try:
         setup(**metadata)
     finally:
