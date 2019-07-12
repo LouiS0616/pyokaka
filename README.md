@@ -1,13 +1,13 @@
 pyokaka
 ===
-Simple tool for convert [Roma-ji][^1] sentences into [Hiragana][^2] one.\
+Simple tool for converting [Roma-ji][^1] sentences into [Hiragana][^2] one.\
 ローマ字の文を平仮名に変換するシンプルなツールです。
 
 ## The origin of package name
 
 An homage to [pykakashi](https://pypi.org/project/pykakasi/) that provides highly function to convert Kana-Kanji into Roma-ji.
 
-_Okaka_(おかか) means bonito flakes in informal Japanese.
+_Okaka_(おかか) is easy Japanese word that mean bonito flakes.
 
 [^1]: https://en.wikipedia.org/wiki/Romanization_of_Japanese
 [^2]: https://en.wikipedia.org/wiki/Hiragana
