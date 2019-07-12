@@ -6,7 +6,6 @@ Simple tool for converting [Roma-ji][^1] sentences into [Hiragana][^2] one.\
 ## The origin of package name
 
 An homage to [pykakashi](https://pypi.org/project/pykakasi/) that provides highly function to convert Kana-Kanji into Roma-ji.
-
 _Okaka_(おかか) is easy Japanese word that mean bonito flakes.
 
 [^1]: https://en.wikipedia.org/wiki/Romanization_of_Japanese
@@ -36,7 +35,7 @@ $ python -m pyokaka.okaka sample.txt
 いま わ むかし, たけとり の おきな と いう もの あり けり.
 ```
 
-To apply additional rule, load json file **utf-8 encoded**.
+To apply additional rule, load **utf-8 encoded** json file. 
 ```json:sample.json
 {
     "ら": ["la"], "り": ["li"], "る": ["lu"], "れ": ["le"], "ろ": ["lo"],
