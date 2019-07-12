@@ -1,11 +1,11 @@
 pyokaka
 ===
-Simple tool for convert [Roma-ji][^1] sentence into [Hiragana][^2] one.\
+Simple tool for convert [Roma-ji][^1] sentences into [Hiragana][^2] one.\
 ローマ字の文を平仮名に変換するシンプルなツールです。
 
 ## The origin of package name
 
-By homage to [pykakashi](https://pypi.org/project/pykakasi/), what provides highly function to convert Kana-Kanji into Roma-ji.
+An homage to [pykakashi](https://pypi.org/project/pykakasi/) that provides highly function to convert Kana-Kanji into Roma-ji.
 
 _Okaka_(おかか) means bonito flakes in informal Japanese.
 
@@ -15,7 +15,7 @@ _Okaka_(おかか) means bonito flakes in informal Japanese.
 ## Demo
 
 **As command line tool**\
-Use as REPL just by calling. To quit, send EOF.
+Use as REPL just by calling from terminal. To quit, send EOF.
 ```cmd
 $ python -m pyokaka.okaka
 
@@ -36,7 +36,7 @@ $ python -m pyokaka.okaka sample.txt
 いま わ むかし, たけとり の おきな と いう もの あり けり.
 ```
 
-To apply additional rule, load json file in **utf-8**.
+To apply additional rule, load json file **utf-8 encoded**.
 ```json:sample.json
 {
     "ら": ["la"], "り": ["li"], "る": ["lu"], "れ": ["le"], "ろ": ["lo"],
@@ -68,7 +68,7 @@ For more information, view `python -m pyokaka.okaka --help`.
 'かつおぶし'
 ```
 
-You can add more vocabulary use convert dict or transtable from json.
+You can add more vocabulary as described below.
 ```python
 >>> okaka.convert('philipps')
 'pひlいpps'
